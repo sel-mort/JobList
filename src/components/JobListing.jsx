@@ -5,8 +5,8 @@ import Spinner from './Spinner';
 import { useState, useEffect } from 'react';
 
 const JobListing = ({ isHome = false }) => {
-    const num = isHome ? 3 : -1;
-    const apiUrl = `http://localhost:8000/jobs?_limit=${num}`;
+    const num = isHome ? 3 : 6;
+    const apiUrl = `/api/jobs?_limit=${num}`;
     // console.log(jobs);
     // const JobListings = isHome ? jobs.slice(0, 3) : jobs;
     const [jobs, setJobs] = useState([]);
