@@ -1,19 +1,37 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const AddJobPage = () => {
-    const [type, setType] = useState('');
+const AddJobPage = ({ addNewJob }) => {
+    const [type, setType] = useState('Full-Time');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [salary, setSalary] = useState('');
+    const [salary, setSalary] = useState('Under $50K');
     const [location, setLocation] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [companyDescription, setCompanyDescription] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
 
+    const navigate = useNavigate();
+
     const submitForm = (e) => {
         e.preventDefault();
-        console.log(title, description);
+        
+        const newJob = {
+            title,
+            type,
+            description,
+            salary,
+            location,
+            company: {
+                name: companyName,
+                description: companyDescription,
+                contactEmail: email,
+                contactPhone: phone
+            }
+        }
+        addNewJob(newJob);
+        return navigate('/jobs');
     }
 
     return (
